@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 67e7cf97-ebdc-4439-9a65-c2853b435c98
+      author: raphael-koszalka
+      changes:
+        - createTable:
+            tableName: city
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(300)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gender
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: birthdate
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: city
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - createSequence:
+            incrementBy: 1
+            schemaName: public
+            sequenceName: short_sequence
+            startValue: 1
