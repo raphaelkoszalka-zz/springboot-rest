@@ -98,7 +98,7 @@ The other times you just need to start the container with the following command:
 
 After you start the database container you just need to create the "test" database.
 
-``` create database shortener ```
+``` create database test ```
 
 When you bootRun the application, Spring Liquibase will read db.changelog-master.yaml and create
 the necessary table and columns.
