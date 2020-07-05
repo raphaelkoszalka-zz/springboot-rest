@@ -33,5 +33,8 @@ public interface ClientAPI {
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     ResponseEntity<ClientDTO> postNewClient(@RequestBody ClientDTO data);
 
+    @RequestMapping(path = "/update", method = RequestMethod.PUT)
+    ResponseEntity<ClientDTO> updateClientName(@RequestBody ClientDTO data);
+
 }
 

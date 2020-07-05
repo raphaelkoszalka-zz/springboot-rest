@@ -27,7 +27,7 @@ Will retrieve a list of cities within the provided state
 
 ### POST
 
-#### #### http://localhost:8080/v1/client/new
+####  http://localhost:8080/v1/client/new
 
 ```
 {
@@ -37,6 +37,20 @@ Will retrieve a list of cities within the provided state
 	"city" : "Blumenau"
 }
 ```
+
+
+### PUT 
+
+```
+{
+	"name" : {USER_NEW_NAME},
+	"gender" : "M",
+	"birthdate" : "03/10/1988",
+	"city" : "Blumenau",
+    "id" : {USER_ID}
+}
+```
+
 
 ### GET
 

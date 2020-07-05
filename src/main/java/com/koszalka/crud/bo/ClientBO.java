@@ -1,6 +1,7 @@
 package com.koszalka.crud.bo;
 
 import com.koszalka.crud.constants.AppConstants;
+import com.koszalka.crud.persistence.dto.ClientDTO;
 import com.koszalka.crud.persistence.entities.CityEntity;
 import com.koszalka.crud.persistence.entities.ClientEntity;
 import com.koszalka.crud.persistence.repositories.ClientRepository;
@@ -35,6 +36,10 @@ public class ClientBO {
     public String saveOne(ClientEntity entity) {
         clientRepository.save(entity);
         return AppConstants.SAVED.getValue();
+    }
+
+    public void updateClientName(String name, Long id) {
+        clientRepository.updateClientName(name, id);
     }
 
 }

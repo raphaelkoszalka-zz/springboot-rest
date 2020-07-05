@@ -75,4 +75,10 @@ public class ClientController implements ClientAPI {
         return new ResponseEntity<ClientDTO>(response, HttpStatus.CREATED);
     }
 
+    @Override
+    public ResponseEntity<ClientDTO> updateClientName(ClientDTO data) {
+        clientBO.updateClientName(data.getName(), data.getId());
+        return new ResponseEntity<ClientDTO>(HttpStatus.OK);
+    }
+
 }
