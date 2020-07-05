@@ -20,6 +20,7 @@ public interface CityAPI {
     @RequestMapping(path = "/city-name/{cityName}", method = RequestMethod.GET)
     ResponseEntity<CityDTO> getCityByName(HttpServletResponse response, @PathVariable("cityName") String cityName);
 
+    // @todo: apply ModelMapper to map Entity to DTO
     @RequestMapping(path = "/state-name/{stateName}", method = RequestMethod.GET)
     ResponseEntity<List<CityEntity>> getCitiesByState(HttpServletResponse response, @PathVariable("stateName") String stateName);
 

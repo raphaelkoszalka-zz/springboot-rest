@@ -39,6 +39,7 @@ public class CityController implements CityAPI {
     }
 
 
+    // @todo: apply ModelMapper to map Entity to DTO
     @Override
     public ResponseEntity<List<CityEntity>> getCitiesByState(HttpServletResponse response, String state) {
         List<CityEntity> entities = cityBO.getCitiesByState(state);
