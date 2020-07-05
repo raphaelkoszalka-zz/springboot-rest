@@ -9,7 +9,7 @@ if it's a POST it will persist either a city or a client.
 
 ### POST
 
-#### #### http://localhost:8080/v1/city/new
+#### http://localhost:8080/v1/city/new
 
 ```
 { "name": "Balneário Camboriú", "state": "Santa Catarina" }
@@ -79,18 +79,38 @@ resources/db folder and create the table and it's columns automatically, so you 
 worry about SQL syntax for different databases, I chose PostgreSQL just because I am used to it, 
 but it would work with MySQL or Oracle for example.
 
+## Database
+In this project I am using PostgreSQL, but since we are utilizing Liquibase, the database is agnostic.
+You can choose which database you prefer.
+
+### How to
+
+```docker pull postgres```
+
+Or download Docker PostgreSQL at: https://hub.docker.com/_/postgres.
+
+Then for the first time, create the container with the following command.
+```- docker run --name DB -e "POSTGRES_PASSWORD=postgres" -p 5432:5432 -d postgres```
+
+The other times you just need to start the container with the following command:
+
+``` docker start DB ```
+
+After you start the database container you just need to create the "test" database.
+
+``` create database shortener ```
+
+When you bootRun the application, Spring Liquibase will read db.changelog-master.yaml and create
+the necessary table and columns.
+
 ## Notes
 
-If I had more time I would install and config Grafana to 'keep and eye' on the
-server health. And also let it runnning at AWS, but my free tier is over :/
+To keep the complexity of this microservice as simple as it gets I chose to write both APIS at the same 
+service instance.
 
-The idea is to let **utils** package running on a lambda server, so it would be up
-only when requested, but since I ain't got no free tier account at AWS I just let it
-be part of the microservice as a separated package.
-
-To minimize at minimum collisions I am concatenating the URL plus Epoch timestamp
-as the algorithm ID, and if is the same URL and timestamp it will just return the database
-persisted shortened URL.
+Also I am not implementing a ModelMapper as I am used to do, just because as already stated, the goal was to 
+provide a workable code without the need to increase it's complexity, since it's just a simple model of how
+Spring Boot handle it's HTTP requests.
 
 Since the microservice does not have user authentication it is stateless, or does not keep sessions,
 but if auth would be need to keep it stateless I would use OAuth2 to avoid creating sessions and use 
