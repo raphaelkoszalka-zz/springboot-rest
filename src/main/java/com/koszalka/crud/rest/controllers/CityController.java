@@ -24,6 +24,19 @@ public class CityController implements CityAPI {
         this.cityBO = cityBO;
     }
 
+
+    @Override
+    public ResponseEntity<CityDTO> getCityByName(HttpServletResponse response, String cityName) {
+        CityEntity entity = cityBO.getCityByName(cityName);
+
+        CityDTO dto = new CityDTO();
+        dto.setName(entity.getName());
+        dto.setState(entity.getState());
+
+        return new ResponseEntity<CityDTO>(dto, HttpStatus.OK);
+    }
+
+
     @Override
     public ResponseEntity<CityDTO> postNewCity(CityDTO data) {
         CityEntity entity = new CityEntity();

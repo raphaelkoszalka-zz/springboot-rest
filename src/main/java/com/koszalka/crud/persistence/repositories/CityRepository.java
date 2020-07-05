@@ -15,4 +15,7 @@ public interface CityRepository extends JpaRepository<CityEntity, Long> {
             + " AND city.state = :state")
     Long checkForCityExistence(@Param("name") String name, @Param("state") String state);
 
+    @Query("SELECT city FROM CityEntity as city WHERE city.name = :name")
+    CityEntity getCityByName(@Param("name") String name);
+
 }

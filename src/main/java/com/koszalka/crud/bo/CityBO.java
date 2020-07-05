@@ -15,11 +15,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class CityBO {
 
-    private final CityRepository cityRepository;git
+    private final CityRepository cityRepository;
 
     @Autowired
     public CityBO(CityRepository cityRepository) {
         this.cityRepository = cityRepository;
+    }
+
+    public CityEntity getCityByName(String city) {
+        return cityRepository.getCityByName(city);
     }
 
     public String saveOne(CityEntity entity) {

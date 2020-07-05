@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(path = "/v1/city")
 public interface CityAPI {
 
+    @RequestMapping(path = "/search/{cityName}", method = RequestMethod.GET)
+    ResponseEntity<CityDTO> getCityByName(HttpServletResponse response, @PathVariable("cityName") String cityName);
+
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     ResponseEntity<CityDTO> postNewCity(@RequestBody CityDTO data);
 
