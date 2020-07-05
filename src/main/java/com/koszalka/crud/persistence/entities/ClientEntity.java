@@ -1,12 +1,7 @@
 package com.koszalka.crud.persistence.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,11 +26,12 @@ public class ClientEntity {
     @Column(name = "gender", nullable = false)
     private String gender;
 
+    // For test purposes, since we do not have an UI I'll be checking by city name, instead of it's ID
     @Column(name = "city", nullable = false)
     private String city;
 
     @Column(name = "birthdate", nullable = false)
-    private Date birthdate;
+    private String birthdate;
 
 
 }
