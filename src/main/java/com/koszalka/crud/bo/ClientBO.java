@@ -20,8 +20,12 @@ public class ClientBO {
         this.clientRepository = clientRepository;
     }
 
-    public Optional<ClientEntity> findClientById(Long id) {
-        return clientRepository.findById(id);
+    public ClientEntity findClientById(Long id) {
+        return clientRepository.findClientById(id);
+    }
+
+    public void deleteClientById(Long id) {
+        clientRepository.delete(findClientById(id));
     }
 
     public ClientEntity findClientByName(String name) {

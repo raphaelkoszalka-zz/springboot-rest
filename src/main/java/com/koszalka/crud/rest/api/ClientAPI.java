@@ -22,10 +22,13 @@ public interface ClientAPI {
 
 
     @RequestMapping(path = "/name/{clientName}", method = RequestMethod.GET)
-    ResponseEntity<ClientEntity> getClientByName(HttpServletResponse response, @PathVariable("clientName") String clientName);
+    ResponseEntity<ClientDTO> getClientByName(HttpServletResponse response, @PathVariable("clientName") String clientName);
 
     @RequestMapping(path = "/id/{clientId}", method = RequestMethod.GET)
-    ResponseEntity<Optional<ClientEntity>> getClientById(HttpServletResponse response, @PathVariable("clientId") Long clientId);
+    ResponseEntity<ClientEntity> getClientById(HttpServletResponse response, @PathVariable("clientId") Long clientId);
+
+    @RequestMapping(path = "/id/{clientId}", method = RequestMethod.DELETE)
+    ResponseEntity<ClientEntity> deleteClientById(HttpServletResponse response, @PathVariable("clientId") Long clientId);
 
     @RequestMapping(path = "/new", method = RequestMethod.POST)
     ResponseEntity<ClientDTO> postNewClient(@RequestBody ClientDTO data);

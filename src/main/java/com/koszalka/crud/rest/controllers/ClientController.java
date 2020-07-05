@@ -34,7 +34,7 @@ public class ClientController implements ClientAPI {
     }
 
     @Override
-    public ResponseEntity<ClientEntity> getClientByName(HttpServletResponse response, String clientName) {
+    public ResponseEntity<ClientDTO> getClientByName(HttpServletResponse response, String clientName) {
         ClientEntity entity = clientBO.findClientByName(clientName);
         ClientDTO res = new ClientDTO();
 
@@ -42,15 +42,22 @@ public class ClientController implements ClientAPI {
         res.setCity(entity.getCity());
         res.setGender(entity.getGender());
         res.setName(entity.getName());
+        res.setId(entity.getId());
+
+        return new ResponseEntity<ClientDTO>(res, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<ClientEntity> getClientById(HttpServletResponse response, Long clientId) {
+        ClientEntity entity = clientBO.findClientById(clientId);
 
         return new ResponseEntity<ClientEntity>(entity, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<Optional<ClientEntity>> getClientById(HttpServletResponse response, Long clientId) {
-        Optional<ClientEntity> entity = clientBO.findClientById(clientId);
-
-        return new ResponseEntity<Optional<ClientEntity>>(entity, HttpStatus.OK);
+    public ResponseEntity<ClientEntity> deleteClientById(HttpServletResponse response, Long clientId) {
+        clientBO.deleteClientById(clientId);
+        return new ResponseEntity<ClientEntity>(HttpStatus.OK);
     }
 
     @Override
@@ -64,7 +71,7 @@ public class ClientController implements ClientAPI {
 
         clientBO.saveOne(entity);
 
-        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getGender(), entity.getCity());
+        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getGender(), entity.getCity(), entity.getId());
         return new ResponseEntity<ClientDTO>(response, HttpStatus.CREATED);
     }
 
