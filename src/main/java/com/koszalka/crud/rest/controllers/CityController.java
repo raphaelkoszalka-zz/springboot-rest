@@ -9,10 +9,13 @@ import com.koszalka.crud.rest.api.CityAPI;
 
 import javax.servlet.http.HttpServletResponse;
 
+
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 public class CityController implements CityAPI {
@@ -24,7 +27,6 @@ public class CityController implements CityAPI {
         this.cityBO = cityBO;
     }
 
-
     @Override
     public ResponseEntity<CityDTO> getCityByName(HttpServletResponse response, String cityName) {
         CityEntity entity = cityBO.getCityByName(cityName);
@@ -34,6 +36,13 @@ public class CityController implements CityAPI {
         dto.setState(entity.getState());
 
         return new ResponseEntity<CityDTO>(dto, HttpStatus.OK);
+    }
+
+
+    @Override
+    public ResponseEntity<List<CityEntity>> getCitiesByState(HttpServletResponse response, String state) {
+        List<CityEntity> entities = cityBO.getCitiesByState(state);
+        return new ResponseEntity<List<CityEntity>>(entities, HttpStatus.OK);
     }
 
 

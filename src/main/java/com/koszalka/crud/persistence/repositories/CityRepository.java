@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 
@@ -17,5 +19,8 @@ public interface CityRepository extends JpaRepository<CityEntity, Long> {
 
     @Query("SELECT city FROM CityEntity as city WHERE city.name = :name")
     CityEntity getCityByName(@Param("name") String name);
+
+    @Query("SELECT city FROM CityEntity as city WHERE city.state = :state")
+    List<CityEntity> getCitiesByState(@Param("state") String state);
 
 }

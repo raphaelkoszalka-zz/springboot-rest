@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CityBO {
 
@@ -24,6 +26,10 @@ public class CityBO {
 
     public CityEntity getCityByName(String city) {
         return cityRepository.getCityByName(city);
+    }
+
+    public List<CityEntity> getCitiesByState(String state) {
+        return cityRepository.getCitiesByState(state);
     }
 
     public String saveOne(CityEntity entity) {
