@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import com.koszalka.crud.rest.api.ClientAPI;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,26 @@ public class ClientController implements ClientAPI {
     }
 
     @Override
+    public ResponseEntity<ClientEntity> getClientByName(HttpServletResponse response, String clientName) {
+        ClientEntity entity = clientBO.findClientByName(clientName);
+        ClientDTO res = new ClientDTO();
+
+        res.setBirthdate(entity.getBirthdate());
+        res.setCity(entity.getCity());
+        res.setGender(entity.getGender());
+        res.setName(entity.getName());
+
+        return new ResponseEntity<ClientEntity>(entity, HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Optional<ClientEntity>> getClientById(HttpServletResponse response, Long clientId) {
+        Optional<ClientEntity> entity = clientBO.findClientById(clientId);
+
+        return new ResponseEntity<Optional<ClientEntity>>(entity, HttpStatus.OK);
+    }
+
+    @Override
     public ResponseEntity<ClientDTO> postNewClient(ClientDTO data) {
         ClientEntity entity = new ClientEntity();
 
@@ -41,8 +62,9 @@ public class ClientController implements ClientAPI {
         entity.setGender(data.getGender());
         entity.setCity(data.getCity());
 
-        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getGender(), entity.getCity());
+        clientBO.saveOne(entity);
 
+        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getGender(), entity.getCity());
         return new ResponseEntity<ClientDTO>(response, HttpStatus.CREATED);
     }
 

@@ -8,6 +8,8 @@ import com.koszalka.crud.persistence.repositories.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class ClientBO {
 
@@ -16,6 +18,14 @@ public class ClientBO {
     @Autowired
     public ClientBO(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    public Optional<ClientEntity> findClientById(Long id) {
+        return clientRepository.findById(id);
+    }
+
+    public ClientEntity findClientByName(String name) {
+        return clientRepository.findClientByName(name);
     }
 
     public String saveOne(ClientEntity entity) {

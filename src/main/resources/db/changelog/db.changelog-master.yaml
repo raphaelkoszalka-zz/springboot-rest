@@ -43,12 +43,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: birthdate
-                  type: datetime
+                  type: varchar
                   constraints:
                     nullable: false
               - column:
                   name: city
-                  type: datetime
+                  type: varchar
                   constraints:
                     nullable: false
         - createSequence:
