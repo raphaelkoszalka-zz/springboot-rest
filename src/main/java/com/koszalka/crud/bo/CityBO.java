@@ -3,8 +3,6 @@ package com.koszalka.crud.bo;
 import com.koszalka.crud.constants.AppConstants;
 import com.koszalka.crud.persistence.dto.CityDTO;
 import com.koszalka.crud.persistence.entities.CityEntity;
-import com.koszalka.crud.utils.UrlShortenerUtil;
-import com.koszalka.crud.utils.UrlShortenerValidationUtil;
 import com.koszalka.crud.persistence.repositories.CityRepository;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
