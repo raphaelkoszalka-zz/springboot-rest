@@ -49,7 +49,7 @@ Will retrieve a list of cities within the provided state
 	"gender" : "M",
 	"birthdate" : "03/10/1988",
 	"city" : "Blumenau",
-    "id" : {USER_ID}
+        "id" : {USER_ID}
 }
 ```
 
