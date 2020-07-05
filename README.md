@@ -41,6 +41,8 @@ Will retrieve a list of cities within the provided state
 
 ### PUT 
 
+####  http://localhost:8080/v1/client/update
+
 ```
 {
 	"name" : {USER_NEW_NAME},
