@@ -2,9 +2,6 @@
 
 This is a simple example of a REST API built with SpringBoot.
 
-There's only two endpoint (or primitive) that will receive a POST or a GET
-if it's a POST it will persist either a city or a client.
-
 ## /v1/city/
 
 ### POST
