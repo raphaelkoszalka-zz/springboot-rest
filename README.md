@@ -31,13 +31,15 @@ Will retrieve a list of cities within the provided state
 
 ```
 {
-	"name" : "Raphael",
-	"gender" : "M",
-	"birthdate" : "03/10/1988",
-	"city" : "Blumenau"
+    "name": "Raphael Koszalka",
+    "gender": "M",
+    "city": {
+        "name": "Blumenau",
+        "state": "Santa Catarina"
+    },
+    "birthdate": "03/10/1988"
 }
 ```
-
 
 ### PUT 
 
@@ -45,14 +47,17 @@ Will retrieve a list of cities within the provided state
 
 ```
 {
-	"name" : {USER_NEW_NAME},
-	"gender" : "M",
-	"birthdate" : "03/10/1988",
-	"city" : "Blumenau",
-        "id" : {USER_ID}
+    "id": 2,
+    "name": {NEW_USER_NAME},
+    "gender": "M",
+    "city": {
+        "name": "Blumenau",
+        "state": "Santa Catarina"
+    },
+    "birthdate": "03/10/1988",
+    "id": {USER_ID}
 }
 ```
-
 
 ### GET
 

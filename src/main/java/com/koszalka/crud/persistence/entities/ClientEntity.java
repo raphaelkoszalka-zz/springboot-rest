@@ -27,8 +27,9 @@ public class ClientEntity {
     private String gender;
 
     // For test purposes, since we do not have an UI I'll be checking by city name, instead of it's ID
-    @Column(name = "city", nullable = false)
-    private String city;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "city", referencedColumnName = "name")
+    private CityEntity city;
 
     @Column(name = "birthdate", nullable = false)
     private String birthdate;

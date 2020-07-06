@@ -11,11 +11,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "city", schema = "public")
 @Getter
 @Setter
-public class CityEntity {
+public class CityEntity implements Serializable {
 
     @Column(name = "id")
     @Id

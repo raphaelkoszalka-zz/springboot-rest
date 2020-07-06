@@ -71,7 +71,7 @@ public class ClientController implements ClientAPI {
 
         clientBO.saveOne(entity);
 
-        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getGender(), entity.getCity(), entity.getId());
+        ClientDTO response = new ClientDTO(entity.getName(), entity.getBirthdate(), entity.getCity(), entity.getGender(), entity.getId());
         return new ResponseEntity<ClientDTO>(response, HttpStatus.CREATED);
     }
 
