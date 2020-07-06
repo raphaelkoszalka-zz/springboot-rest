@@ -15,10 +15,12 @@ import java.util.Optional;
 public class ClientBO {
 
     private final ClientRepository clientRepository;
+    private final CityRepository cityRepository;
 
     @Autowired
-    public ClientBO(ClientRepository clientRepository) {
+    public ClientBO(ClientRepository clientRepository, CityRepository cityRepository) {
         this.clientRepository = clientRepository;
+        this.cityRepository = cityRepository;
     }
 
     public ClientEntity findClientById(Long id) {
@@ -34,12 +36,19 @@ public class ClientBO {
     }
 
     public String saveOne(ClientEntity entity) {
+        if (checkForCityExistence(entity.getCity().getName(), entity.getCity().getState()) > 0) {
+            return AppConstants.BAD_REQUEST.getValue();
+        }
         clientRepository.save(entity);
         return AppConstants.SAVED.getValue();
     }
 
     public void updateClientName(String name, Long id) {
         clientRepository.updateClientName(name, id);
+    }
+
+    private Long checkForCityExistence(String city, String state) {
+        return cityRepository.checkForCityExistence(city, state);
     }
 
 }

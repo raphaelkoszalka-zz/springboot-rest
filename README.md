@@ -118,10 +118,6 @@ POST a new entity with and ID already set, for example.
 
 User ID is only required when updating username.
 
-Another important point is the user city name, since we do not have an interface to get and list all persisted cities
-on the database you should take care to post a user with a city already persisted in the database, remembering again 
-that since this is just a POC I tried to keep the code complexity in a low level, without adding tons of business rules.
-
 Also I am not implementing a ModelMapper as I am used to do, just because as already stated, the goal was to 
 provide a workable code without the need to increase it's complexity, since it's just a simple model of how
 Spring Boot handle it's HTTP requests.

@@ -6,10 +6,14 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.koszalka.crud.bo.CityBO;
+import com.koszalka.crud.bo.ClientBO;
 import com.koszalka.crud.persistence.dto.CityDTO;
+import com.koszalka.crud.persistence.dto.ClientDTO;
 import com.koszalka.crud.persistence.entities.CityEntity;
+import com.koszalka.crud.persistence.entities.ClientEntity;
 import com.koszalka.crud.rest.controllers.CityController;
 
+import com.koszalka.crud.rest.controllers.ClientController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,43 +30,45 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class CityControllerTest {
+public class ClientControllerTest {
 
     private MockMvc mockMvc;
 
     @Mock
-    private CityBO cityBo;
+    private ClientBO clientBO;
 
     @InjectMocks
-    private CityController cityController;
+    private ClientController clientController;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(cityController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(clientController).build();
     }
 
     @Test
     private void shortenerControllerGetGone() throws Exception {
         Mockito
-            .when(cityBo.getCityByName("Blumenau"))
-            .thenReturn(new CityEntity());
+                .when(clientBO.getCityByName("Blumenau"))
+                .thenReturn(new ClientEntity());
 
         mockMvc
-            .perform(MockMvcRequestBuilders.get("/v1/city/city-name/Blumenau"))
-            .andExpect(status().isOk());
+                .perform(MockMvcRequestBuilders.get("/v1/city/city-name/Blumenau"))
+                .andExpect(status().isOk());
     }
 
     @Test
     private void cityControllerPost() throws Exception {
 
-        CityDTO data = new CityDTO();
-        data.setState("Santa Catarina");
-        data.setName("Blumenau");
+        ClientDTO data = new ClientDTO();
+        data.setGender("M");
+        data.setName("Raphael Koszalka");
+        data.setBirthdate("03/10/1988");
+        data.setCity(new CityEntity());
 
         this.mockMvc
-            .perform(post("/v1/city/new")
-             .contentType(MediaType.APPLICATION_JSON).content(data.toString()))
-            .andExpect(status().isCreated());
+                .perform(post("/v1/city/new")
+                        .contentType(MediaType.APPLICATION_JSON).content(data.toString()))
+                .andExpect(status().isCreated());
     }
 }
